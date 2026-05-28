@@ -2,6 +2,7 @@ package com.gloriane;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 // ===================== Exercise 5 (Optional) =====================
 public class Order {
@@ -12,7 +13,7 @@ public class Order {
 
     // Constructor: order with customer
     public Order(int orderId, Customer customer) {
-        setOrderId(orderId);
+        this .orderId = getOrderId();
         this.customer = customer;
         this.products = new ArrayList<>();
         this.totalPrice = 0.0;
@@ -20,7 +21,7 @@ public class Order {
 
     // Constructor: order with customer + initial products
     public Order(int orderId, Customer customer, List<Product> products) {
-        setOrderId(orderId);
+        this .orderId = getOrderId();
         this.customer = customer;
         this.products = (products == null) ? new ArrayList<>() : products;
         this.totalPrice = 0.0;
@@ -49,13 +50,12 @@ public class Order {
 
     // Getters/Setters (no setter for totalPrice on purpose)
     public int getOrderId() {
+
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
-        if (orderId > 0) {
-            this.orderId = orderId;
-        }
+    private String generateOrderId() {
+        return UUID.randomUUID().toString();
     }
 
     public Customer getCustomer() {

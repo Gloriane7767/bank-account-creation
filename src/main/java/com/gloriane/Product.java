@@ -1,5 +1,7 @@
 package com.gloriane;
 
+import java.util.UUID;
+
 // ===================== Exercise 4 =====================
     // Fields
 public class Product {
@@ -9,7 +11,7 @@ public class Product {
 
     // Parameterized constructor
     public Product(int productId, String name, double price) {
-        setProductId(productId);
+        this .productId = getProductId();
         setName(name);
         setPrice(price); // use setter for safety
     }
@@ -18,6 +20,7 @@ public class Product {
     public  int getProductId() {
         return productId;
     }
+
     public String getName() {
         return name;
     }
@@ -26,10 +29,8 @@ public class Product {
         return price;
     }
 
-    public void setProductId(int productId) {
-        if(productId > 0 ) {
-            this.productId = productId;
-        }
+    private String generateProductId() {
+        return UUID.randomUUID().toString();
     }
     public void setName(String name) {
         if (name == null || name.trim().isEmpty()) {

@@ -11,7 +11,7 @@ public class Student {
     private String major;
 
     // Parameterized constructor
-    public Student(int studentId, String name, int age, String major) {
+    public Student(String name, int age, String major) {
         this.studentId = generateStudentId();
         setName(name);
         setAge(age);
