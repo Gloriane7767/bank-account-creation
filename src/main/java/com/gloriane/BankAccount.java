@@ -6,13 +6,12 @@ public class BankAccount {
     private String accountHolder;
     private double balance;
 
-    // Parameterized Constructor
-    public BankAccount(String accountHolder, double initialBalance) {
-        setAccountHolder(accountHolder);
-        setBalance(initialBalance);
-        // deposit(balance) this is the initial amount in the account
+    // Constructor
+    public BankAccount(String accountHolder, double balance) {
+        this.accountHolder = accountHolder;
+        this.balance = balance;
     }
-    // Getter/Setter
+
     public String getAccountHolder() {
         return accountHolder;
     }
@@ -22,36 +21,34 @@ public class BankAccount {
     }
 
     public void setAccountHolder(String accountHolder) {
+            if(accountHolder == null || accountHolder.trim().isEmpty()) {
+                throw new IllegalArgumentException("Account holder name cannot be null or empty");
+            }
         this.accountHolder = accountHolder;
     }
 
     public void setBalance(double balance) {
+        if(balance < 0 )  {
+            throw new IllegalArgumentException("Balance cannot be negative");
+        }
         this.balance = balance;
-        // return balance;
     }
 
-    // Methods
-    public double showBalance() {
-        return balance;
-    }
-
-    public void deposit(double amount) {
-        if (amount > 0) {
-            balance += amount;
-        } else {
+    private void deposit(double amount) {
+        if(amount <= 0) {
             throw new IllegalArgumentException("Deposit amount must be positive");
         }
+        balance += amount;
     }
 
-    public void withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount;
-        } else {
-            throw new IllegalArgumentException("Invalid withdrawal amount");
+    private void withdraw(double amount) {
+        if(amount > balance) {
+            throw new IllegalArgumentException("Insufficient funds");
         }
+        balance -= amount;
     }
 
-    @Override
+        @Override
     public String toString() {
         return "BankAccount{accountHolder='" + accountHolder + "', balance=" + balance + "}";
     }
