@@ -1,5 +1,7 @@
 package com.gloriane;
 
+import java.util.UUID;
+
 // ===================== Exercise 3 =====================
     // Fields
 public class Student {
@@ -10,32 +12,33 @@ public class Student {
 
     // Parameterized constructor
     public Student(int studentId, String name, int age, String major) {
-        setStudentId(studentId);
+        this.studentId = generateStudentId();
         setName(name);
         setAge(age);
         setMajor(major);
     }
-
     // Getters/Setters
     public int getStudentId(){
         return studentId;
     }
+
     public String getName() {
         return name;
     }
 
     public int getAge() {
+
         return age;
     }
 
     public String getMajor() {
+
         return major;
     }
 
-    public void setStudentId(int studentId) {
-        if (studentId > 0) {
-            this.studentId = studentId;
-        }
+    public int generateStudentId() {
+
+        return UUID.randomUUID().hashCode();
     }
 
     public void setName(String name) {

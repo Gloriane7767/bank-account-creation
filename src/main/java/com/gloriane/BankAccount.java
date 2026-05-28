@@ -1,5 +1,7 @@
 package com.gloriane;
 
+import java.util.Objects;
+
 // =======================Exercise 1====================
     // Fields
 public class BankAccount {
@@ -8,8 +10,8 @@ public class BankAccount {
 
     // Constructor
     public BankAccount(String accountHolder, double balance) {
-        this.accountHolder = accountHolder;
-        this.balance = balance;
+        setAccountHolder(accountHolder);
+        setBalance(balance);
     }
 
     public String getAccountHolder() {
@@ -48,7 +50,7 @@ public class BankAccount {
         balance -= amount;
     }
 
-        @Override
+    @Override
     public String toString() {
         return "BankAccount{accountHolder='" + accountHolder + "', balance=" + balance + "}";
     }
